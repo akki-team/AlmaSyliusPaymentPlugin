@@ -169,7 +169,7 @@ final class AlmaBridge implements AlmaBridgeInterface
     public function validatePayment(
         PaymentInterface $payment,
         string $almaPaymentId,
-        Payment &$paymentData = null
+        ?Payment &$paymentData = null
     ): bool {
         /** @var int $pid */
         $pid = $payment->getId();
