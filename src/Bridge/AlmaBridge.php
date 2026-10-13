@@ -188,9 +188,11 @@ final class AlmaBridge implements AlmaBridgeInterface
             throw new PaymentIdMismatchException($error);
         }
 
+        $dueAmount = ($this->paymentDataBuilder)([], $payment)['payment']['purchase_amount'];
+
         return
             // Check that paid amount matches due amount
-            $paymentData->purchase_amount === $payment->getAmount()
+            $paymentData->purchase_amount === $dueAmount
             // Check that payment is not expired
             && $paymentData->expired_at === null
             // Check that payment is either correctly initiated, or fully paid (p1x fallback)
