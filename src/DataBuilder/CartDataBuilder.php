@@ -158,10 +158,10 @@ class CartDataBuilder implements DataBuilderInterface
         /** @var ImageInterface[] $images */
         $images = $subject->getImages();
 
-        if (!empty($mainPictures) && $mainPictures[0] !== null ) {
-            $path = $mainPictures[0]->getPath();
-        } elseif (!empty($images) && $images[0] !== null) {
-            $path = $images[0]->getPath();
+        if (false === $mainPictures->isEmpty()) {
+            $path = $mainPictures->first()->getPath();
+        } elseif (false === $images->isEmpty()) {
+            $path = $images->first()->getPath();
         }
 
         $url = "https://placehold.it/200x200";

@@ -1,5 +1,19 @@
 # Changelog
 
+v3.0.0
+------
+
+- Feat: Compatibility Sylius 2.x (twig hooks, redirection to Alma only), Symfony 7.4, PHP 8.5
+- Fix: Payment validation compares the paid amount with the `purchase_amount` built by the payment data builder, so that a decorated builder (deposit) is taken into account
+- Fix: `ConvertPaymentAction` accepts any `PaymentDataBuilderInterface`
+- Fix: `CartDataBuilder` reads the product picture with `first()`
+- Chore: `alma/alma-php-client` limited to `^2.5`, `version` field removed from `composer.json`
+
+v2.2.0
+------
+
+- Feat: Compatibility Sylius 1.14
+
 v2.1.0
 ------
 

@@ -47,5 +47,5 @@ interface AlmaBridgeInterface
      * @return bool
      * @throws RequestError
      */
-    function validatePayment(PaymentInterface $payment, string $almaPaymentId, Payment &$paymentData = null): bool;
+    function validatePayment(PaymentInterface $payment, string $almaPaymentId, ?Payment &$paymentData = null): bool;
 }

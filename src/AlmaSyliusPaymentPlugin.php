@@ -11,11 +11,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class AlmaSyliusPaymentPlugin extends Bundle
 {
-    const VERSION = "2.1.0";
+    const VERSION = "3.0.0";
 
     use SyliusPluginTrait;
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
