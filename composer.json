@@ -1,7 +1,6 @@
 {
   "name": "alma/sylius-payment-plugin",
   "type": "sylius-plugin",
-  "version": "2.1.0",
   "keywords": [
     "alma",
     "buy now pay later",
@@ -15,7 +14,7 @@
   "license": "MIT",
   "require": {
     "php":  "~8.2 || ~8.3 || ~8.4",
-    "alma/alma-php-client": ">=1.11.2",
+    "alma/alma-php-client": "^2.5",
     "sylius/sylius": "^2.0",
     "ext-json": "*"
   },
