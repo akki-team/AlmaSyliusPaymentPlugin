@@ -10,8 +10,11 @@
 ## Requirements
 
 ### Compatibility
-- **Sylius**: Compatible with versions `1.9.x` to `1.12.x`
-- **PHP**: Compatible with versions `7.3` to `8.0`
+- **Sylius**: `2.x` (tested with `2.3.0`, Symfony `7.4`)
+- **PHP**: `8.2` to `8.5`
+- **Alma PHP client**: `2.x`
+
+The payment page is always a redirection to Alma: the in-page mode has been removed.
 
 Alma currently accepts Euros only; make sure you activate your payment method on channels that use that currency, else
 you won't see it at checkout.
@@ -31,16 +34,35 @@ Before configuring the module, you need to create your merchant account on [dash
 3. Use these credentials in the module configuration.
 
 ### Installation
-1. Use Composer to install the plugin:
+1. Declare this repository and install the plugin with Composer:
 
 ```
-$ composer require alma/sylius-payment-plugin
+# composer.json
+
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/akki-team/AlmaSyliusPaymentPlugin"
+    }
+]
 ```
 
-2. Import routes:
+```
+$ composer require alma/sylius-payment-plugin:^3.0
+```
+
+2. Register the bundle, if Symfony Flex did not:
 
 ```
-# config/routes/sylius_shop.yaml
+# config/bundles.php
+
+Alma\SyliusPaymentPlugin\AlmaSyliusPaymentPlugin::class => ['all' => true],
+```
+
+3. Import routes:
+
+```
+# config/routes/alma.yaml
 
 sylius_alma:
     resource: "@AlmaSyliusPaymentPlugin/Resources/config/shop_routing.yaml"
@@ -49,26 +71,15 @@ sylius_alma:
         _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
 ```
 
-3. Override Sylius' templates:
-
-```
-cp -R vendor/alma/sylius-payment-plugin/src/Resources/views/bundles/* templates/bundles/
-```
+The admin and shop templates are registered as Sylius twig hooks: no template override is needed.
 
 4. Export assets:
 
 ```
-bin/console sylius:install:asset
+$ php bin/console assets:install
 ```
 
-5. Update your shop's translation catalogs:
-
-```
-$ php bin/console translation:update --dump-messages fr AlmaSyliusPaymentPlugin 
-$ php bin/console translation:update --dump-messages en AlmaSyliusPaymentPlugin 
-```
-
-6. Finally, clear your cache:
+5. Finally, clear your cache:
 
 ```
 $ php bin/console cache:clear
