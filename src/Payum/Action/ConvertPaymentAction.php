@@ -7,6 +7,7 @@ namespace Alma\SyliusPaymentPlugin\Payum\Action;
 use Alma\SyliusPaymentPlugin\Bridge\AlmaBridge;
 use Alma\SyliusPaymentPlugin\Bridge\AlmaBridgeInterface;
 use Alma\SyliusPaymentPlugin\DataBuilder\PaymentDataBuilder;
+use Alma\SyliusPaymentPlugin\DataBuilder\PaymentDataBuilderInterface;
 use Alma\SyliusPaymentPlugin\ValueObject\Customer;
 use Alma\SyliusPaymentPlugin\ValueObject\Payment;
 use ArrayAccess;
@@ -40,7 +41,7 @@ final class ConvertPaymentAction implements ActionInterface, ApiAwareInterface, 
      */
     private $paymentDataBuilder;
 
-    public function __construct(PaymentDataBuilder $paymentDataBuilder)
+    public function __construct(PaymentDataBuilderInterface $paymentDataBuilder)
     {
         $this->apiClass = AlmaBridge::class;
         $this->paymentDataBuilder = $paymentDataBuilder;
